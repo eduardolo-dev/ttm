@@ -24,25 +24,25 @@ export default class Task {
     }
 
     static findByWorkspaceId(workspaceId) {
-        const stmt = db.prepare('SELECT * FROM tasks WHERE workspace_id = ? ORDER BY created_at DESC');
+        const stmt = db.prepare('SELECT * FROM tasks WHERE workspace_id = ? ORDER BY created_at ASC');
         const rows = stmt.all(workspaceId);
         return rows.map(row => new Task(row.id, row.title, row.done, row.workspace_id, row.created_at));
     }
 
     static findCompletedByWorkspaceId(workspaceId) {
-        const stmt = db.prepare('SELECT * FROM tasks WHERE workspace_id = ? AND done = 1 ORDER BY created_at DESC');
+        const stmt = db.prepare('SELECT * FROM tasks WHERE workspace_id = ? AND done = 1 ORDER BY created_at ASC');
         const rows = stmt.all(workspaceId);
         return rows.map(row => new Task(row.id, row.title, row.done, row.workspace_id, row.created_at));
     }
 
     static findPendingByWorkspaceId(workspaceId) {
-        const stmt = db.prepare('SELECT * FROM tasks WHERE workspace_id = ? AND done = 0 ORDER BY created_at DESC');
+        const stmt = db.prepare('SELECT * FROM tasks WHERE workspace_id = ? AND done = 0 ORDER BY created_at ASC');
         const rows = stmt.all(workspaceId);
         return rows.map(row => new Task(row.id, row.title, row.done, row.workspace_id, row.created_at));
     }
 
     static findAll() {
-        const stmt = db.prepare('SELECT * FROM tasks ORDER BY created_at DESC');
+        const stmt = db.prepare('SELECT * FROM tasks ORDER BY created_at ASC');
         const rows = stmt.all();
         return rows.map(row => new Task(row.id, row.title, row.done, row.workspace_id, row.created_at));
     }
