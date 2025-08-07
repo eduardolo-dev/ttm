@@ -8,13 +8,6 @@ const cli = meow(
 	`
 		Usage
 		  $ ttm
-
-		Options
-			--name  Your name
-
-		Examples
-		  $ ttm --name=Jane
-		  Hello, Jane
 	`,
 	{
 		importMeta: import.meta,
